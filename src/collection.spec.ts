@@ -12,6 +12,41 @@ describe('Collection', () => {
 
       expect(result).toEqual([10, 2]);
     });
+
+    it('adds a multiple elements', () => {
+      const collection = new Collection<number>();
+
+      collection.addRange([2, 10, 15]);
+      collection.addRange([1]);
+
+      const result = collection.toArray();
+
+      expect(result).toEqual([2, 10, 15, 1]);
+    });
+  });
+
+  describe('map', () => {
+    it('maps a collection', () => {
+      const collection = new Collection<number>();
+
+      collection.addRange([3, 5, 1, 2]);
+
+      const result = collection.map((item) => item + 1);
+
+      expect(result).toEqual([4, 6, 2, 3]);
+    });
+  });
+
+  describe('reduce', () => {
+    it('reduces a collection to a single value', () => {
+      const collection = new Collection<number>();
+
+      collection.addRange([2, 7, 10, 3]);
+
+      const result = collection.reduce<number>((prev, curr) => prev + curr, 0);
+
+      expect(result).toEqual(22);
+    });
   });
 
   describe('remove', () => {
