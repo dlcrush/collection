@@ -25,6 +25,30 @@ describe('Collection', () => {
     });
   });
 
+  describe('empty', () => {
+    it('empties out the collection', () => {
+      const collection = new Collection<number>([1, 2, 3]);
+
+      collection.empty();
+
+      expect(collection.toArray()).toEqual([]);
+    });
+  });
+
+  describe('isEmpty', () => {
+    it('returns true when a collection is empty', () => {
+      const collection = new Collection<number>();
+
+      expect(collection.isEmpty()).toBe(true);
+    });
+
+    it('returns false when a collection is not empty', () => {
+      const collection = new Collection<number>([2]);
+
+      expect(collection.isEmpty()).toBe(false);
+    });
+  });
+
   describe('map', () => {
     it('maps a collection', () => {
       const collection = new Collection<number>();
@@ -85,6 +109,16 @@ describe('Collection', () => {
       const result = collection.toArray();
 
       expect(result).toEqual([{ id: 'hello', val: 3 }]);
+    });
+  });
+
+  describe('size', () => {
+    it('returns the size of the collection', () => {
+      const collection = new Collection<number>([1, 2, 3, 4]);
+
+      const result = collection.size();
+
+      expect(result).toBe(4);
     });
   });
 });

@@ -16,6 +16,14 @@ class Collection<T> implements ICollection<T> {
     this.items.push(...elements);
   }
 
+  empty(): void {
+    this.items = [];
+  }
+
+  isEmpty(): boolean {
+    return this.size() < 1;
+  }
+
   map<V>(fn: (item: T, idx?: number) => V): V[] {
     return this.items.map((item, idx) => fn(item, idx));
   }
@@ -39,6 +47,10 @@ class Collection<T> implements ICollection<T> {
     } else {
       this.items = this.items.filter((x) => x !== key);
     }
+  }
+
+  size(): number {
+    return this.items.length;
   }
 
   toJSON(): string {
