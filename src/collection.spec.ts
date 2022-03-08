@@ -30,6 +30,14 @@ describe('Collection', () => {
     });
   });
 
+  describe('collect', () => {
+    it('creates a new collection', () => {
+      const collection = Collection.collect([1, 2, 3]);
+
+      expect(collection.toArray()).toEqual([1, 2, 3]);
+    });
+  });
+
   describe('empty', () => {
     it('empties out the collection', () => {
       const collection = new Collection<number>([1, 2, 3]);

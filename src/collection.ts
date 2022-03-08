@@ -16,6 +16,10 @@ class Collection<T> implements ICollection<T> {
     this.items.push(...elements);
   }
 
+  static collect<T>(arr?: T[]): ICollection<T> {
+    return new Collection<T>(arr);
+  }
+
   empty(): void {
     this.items = [];
   }
