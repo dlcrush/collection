@@ -1,6 +1,11 @@
 import { ICollection } from 'contracts/collection';
 import Collection from './collection';
 
+interface TestObj {
+  id: number;
+  val: string;
+}
+
 describe('Collection', () => {
   describe('add', () => {
     it('adds an element', () => {
@@ -32,6 +37,50 @@ describe('Collection', () => {
       collection.empty();
 
       expect(collection.toArray()).toEqual([]);
+    });
+  });
+
+  describe('find', () => {
+    it('finds an element in a collection using key, value', () => {
+      const collection = new Collection<TestObj>();
+
+      collection.addRange([
+        { id: 1, val: 'bacon' },
+        { id: 2, val: 'lettuce' },
+        { id: 3, val: 'tomato' },
+      ]);
+
+      const result = collection.find('val', 'bacon');
+
+      expect(result).toStrictEqual({ id: 1, val: 'bacon' });
+    });
+
+    it('finds an element in a collection using function', () => {
+      const collection = new Collection<TestObj>();
+
+      collection.addRange([
+        { id: 1, val: 'bacon' },
+        { id: 2, val: 'lettuce' },
+        { id: 3, val: 'tomato' },
+      ]);
+
+      const result = collection.find((val) => val.id === 2);
+
+      expect(result).toStrictEqual({ id: 2, val: 'lettuce' });
+    });
+
+    it('returns undefined if no element is found', () => {
+      const collection = new Collection<TestObj>();
+
+      collection.addRange([
+        { id: 1, val: 'bacon' },
+        { id: 2, val: 'lettuce' },
+        { id: 3, val: 'tomato' },
+      ]);
+
+      const result = collection.find('id', 5);
+
+      expect(result).toBeUndefined();
     });
   });
 

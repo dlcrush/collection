@@ -20,6 +20,14 @@ class Collection<T> implements ICollection<T> {
     this.items = [];
   }
 
+  find(key: keyof T, value: unknown): T | undefined;
+  find(fn: ((value: T) => boolean)): T | undefined;
+  find(...args:unknown[]): T | undefined {
+    const predicate = Util.isFunction(args[0]) ? args[0] as (value: T) => boolean
+      : ((val: T) => val[args[0] as keyof T] === args[1]);
+    return this.items.find((value) => predicate(value));
+  }
+
   isEmpty(): boolean {
     return this.size() < 1;
   }

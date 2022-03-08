@@ -2,6 +2,8 @@ export interface ICollection<T> {
   add(element: T): void;
   addRange(elements: T[]): void;
   empty(): void;
+  find(key: keyof T, value: unknown): T | undefined;
+  find(fn: ((value: T) => boolean)): T | undefined;
   isEmpty(): boolean;
   map<V>(fn: (item: T, idx?: number) => V): V[];
   reduce<V>(fn: (prev: V, curr: T, idx?: number) => V, initial: V): V;
