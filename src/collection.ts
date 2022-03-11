@@ -20,6 +20,26 @@ class Collection<T> implements ICollection<T> {
     return new Collection<T>(arr);
   }
 
+  contains(element: T): boolean {
+    return this.items.some((x) => x === element);
+  }
+
+  containsRange(elements: T[]): boolean {
+    if (!elements.length) return true;
+
+    let idx = 0;
+    let returnValue = true;
+
+    do {
+      returnValue = this.contains(elements[idx]);
+
+      idx += 1;
+    }
+    while (returnValue && idx < elements.length);
+
+    return returnValue;
+  }
+
   empty(): void {
     this.items = [];
   }

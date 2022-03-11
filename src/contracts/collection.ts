@@ -1,7 +1,10 @@
 export interface ICollection<T> {
   add(element: T): void;
   addRange(elements: T[]): void;
+  contains(element: T): boolean;
+  containsRange(element: T[]): boolean;
   empty(): void;
+  // filter(key: keyof T, value: unknown): T
   find(key: keyof T, value: unknown): T | undefined;
   find(fn: ((value: T) => boolean)): T | undefined;
   isEmpty(): boolean;

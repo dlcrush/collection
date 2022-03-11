@@ -38,6 +38,46 @@ describe('Collection', () => {
     });
   });
 
+  describe('contains', () => {
+    it('returns true if element is found', () => {
+      const collection = Collection.collect([1, 2, 3]);
+
+      expect(collection.contains(2)).toBe(true);
+    });
+
+    it('returns false if element is not found', () => {
+      const collection = Collection.collect([1, 2, 3]);
+
+      expect(collection.contains(4)).toBe(false);
+    });
+  });
+
+  describe('containsRange', () => {
+    it('returns true if all elements are found', () => {
+      const collection = Collection.collect([1, 2, 3]);
+
+      expect(collection.containsRange([1, 3])).toBe(true);
+    });
+
+    it('returns false if none of the elements are found', () => {
+      const collection = Collection.collect([1, 2, 3]);
+
+      expect(collection.containsRange([4, 6])).toBe(false);
+    });
+
+    it('returns false if only some of the elements are found', () => {
+      const collection = Collection.collect([1, 2, 3]);
+
+      expect(collection.containsRange([1, 4])).toBe(false);
+    });
+
+    it('returns true if empty elements array is passed', () => {
+      const collection = Collection.collect([1, 2, 3]);
+
+      expect(collection.containsRange([])).toBe(true);
+    });
+  });
+
   describe('empty', () => {
     it('empties out the collection', () => {
       const collection = new Collection<number>([1, 2, 3]);
