@@ -9,6 +9,7 @@ export interface ICollection<T> {
   find(fn: ((value: T) => boolean)): T | undefined;
   isEmpty(): boolean;
   map<V>(fn: (item: T, idx?: number) => V): V[];
+  pluck<V>(key: keyof T): V[];
   reduce<V>(fn: (prev: V, curr: T, idx?: number) => V, initial: V): V;
   remove(key: T): void;
   remove<V>(key: keyof T, value: V): void;

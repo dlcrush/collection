@@ -60,6 +60,10 @@ class Collection<T> implements ICollection<T> {
     return this.items.map((item, idx) => fn(item, idx));
   }
 
+  pluck<V>(key: keyof T): V[] {
+    return this.map<V>((itm) => itm[key] as unknown as V);
+  }
+
   reduce<V>(fn: (prev: V, curr: T, idx?: number) => V, initial: V): V {
     return this.items.reduce<V>((prev, curr, idx) => fn(prev, curr, idx), initial);
   }

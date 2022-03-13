@@ -158,6 +158,22 @@ describe('Collection', () => {
     });
   });
 
+  describe('pluck', () => {
+    it('returns an array of values for the key', () => {
+      const collection = new Collection<{ id: number, value: number }>();
+
+      collection.addRange([
+        { id: 1, value: 10 },
+        { id: 2, value: 2 },
+        { id: 4, value: 3 },
+      ]);
+
+      const result = collection.pluck<number>('value');
+
+      expect(result).toEqual([10, 2, 3]);
+    });
+  });
+
   describe('reduce', () => {
     it('reduces a collection to a single value', () => {
       const collection = new Collection<number>();
