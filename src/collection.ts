@@ -44,6 +44,10 @@ class Collection<T> implements ICollection<T> {
     this.items = [];
   }
 
+  first(): T | undefined {
+    return this.size() ? this.items[0] : undefined;
+  }
+
   find(key: keyof T, value: unknown): T | undefined;
   find(fn: ((value: T) => boolean)): T | undefined;
   find(...args:unknown[]): T | undefined {
@@ -54,6 +58,10 @@ class Collection<T> implements ICollection<T> {
 
   isEmpty(): boolean {
     return this.size() < 1;
+  }
+
+  last(): T | undefined {
+    return this.size() ? this.items[this.size() - 1] : undefined;
   }
 
   map<V>(fn: (item: T, idx?: number) => V): V[] {

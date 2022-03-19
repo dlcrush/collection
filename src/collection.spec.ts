@@ -132,6 +132,20 @@ describe('Collection', () => {
     });
   });
 
+  describe('first', () => {
+    it('returns the first element when exists', () => {
+      const collection = new Collection<number>([1, 2, 3]);
+
+      expect(collection.first()).toBe(1);
+    });
+
+    it('returns undefined when collection is empty', () => {
+      const collection = new Collection<number>();
+
+      expect(collection.first()).toBeUndefined();
+    });
+  });
+
   describe('isEmpty', () => {
     it('returns true when a collection is empty', () => {
       const collection = new Collection<number>();
@@ -143,6 +157,20 @@ describe('Collection', () => {
       const collection = new Collection<number>([2]);
 
       expect(collection.isEmpty()).toBe(false);
+    });
+  });
+
+  describe('last', () => {
+    it('returns last element when exists', () => {
+      const collection = new Collection<number>([1, 2, 3]);
+
+      expect(collection.last()).toBe(3);
+    });
+
+    it('returns undefined when collection is empty', () => {
+      const collection = new Collection<number>();
+
+      expect(collection.last()).toBeUndefined();
     });
   });
 
